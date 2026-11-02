@@ -1,0 +1,212 @@
+openapi: 3.0.3
+
+info:
+  title: Pokedex
+  version: 1.0.0
+  description: |
+    le pokedex
+
+servers:
+  - url: http://172.16.192.254:5001/api/v1
+    description: Server
+
+paths:
+  /pokemons:
+    get:
+      summary: Get all Pokemon
+      description: Returns all Pokemon.
+      responses:
+        '200':
+          description: 
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: object
+                      properties:
+                        english:
+                          type: string
+                        japanese:
+                          type: string
+                        chinese:
+                          type: string
+                        french:
+                          type: string
+                    type:
+                      type: array
+                      items:
+                        type: string
+                    base:
+                      type: object
+                      properties:
+                        HP:
+                          type: integer
+                        Attack:
+                          type: integer
+                        Defense:
+                          type: integer
+                        Sp. Attack:
+                          type: integer
+                        Sp. Defense:
+                          type: integer
+                        Speed:
+                          type: integer
+
+  /pokemons/{id}:
+    get:
+      summary: Get Pokemon by ID
+      description: Returns a Pokemon by its ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: object
+                    properties:
+                      english:
+                        type: string
+                      japanese:
+                        type: string
+                      chinese:
+                        type: string
+                      french:
+                        type: string
+                  type:
+                    type: array
+                    items:
+                      type: string
+                  base:
+                    type: object
+                    properties:
+                      HP:
+                        type: integer
+                      Attack:
+                        type: integer
+                      Defense:
+                        type: integer
+                      Sp. Attack:
+                        type: integer
+                      Sp. Defense:
+                        type: integer
+                      Speed:
+                        type: integer
+        '404':
+          description: Pokemon not found.
+
+  /pokemons/search/{name}:
+    get:
+      summary: Get Pokemon by name
+      description: Returns a Pokemon by its name
+      parameters:
+        - name: name
+          in: path
+          required: true
+          description: Pokemon name.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Pokemon found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: object
+                    properties:
+                      english:
+                        type: string
+                      japanese:
+                        type: string
+                      chinese:
+                        type: string
+                      french:
+                        type: string
+                  type:
+                    type: array
+                    items:
+                      type: string
+                  base:
+                    type: object
+                    properties:
+                      HP:
+                        type: integer
+                      Attack:
+                        type: integer
+                      Defense:
+                        type: integer
+                      Sp. Attack:
+                        type: integer
+                      Sp. Defense:
+                        type: integer
+                      Speed:
+                        type: integer
+        '404':
+          description: Pokemon not found
+
+  /pokemons/random:
+    get:
+      summary: Get a random Pokemon
+      description: Returns a randomly selected Pokemon
+      responses:
+        '200':
+          description: 
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: object
+                    properties:
+                      english:
+                        type: string
+                      japanese:
+                        type: string
+                      chinese:
+                        type: string
+                      french:
+                        type: string
+                  type:
+                    type: array
+                    items:
+                      type: string
+                  base:
+                    type: object
+                    properties:
+                      HP:
+                        type: integer
+                      Attack:
+                        type: integer
+                      Defense:
+                        type: integer
+                      Sp. Attack:
+                        type: integer
+                      Sp. Defense:
+                        type: integer
+                      Speed:
+                        type: integer
